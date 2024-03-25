@@ -1,3 +1,2 @@
-# Axum + htmx
-
-This is an example of how you can use Shuttle with Axum, Askama and htmx to create a frontend that's easily extendable and requires zero framework knowledge, while being able to easily inject variables from the backend into the frontend.
+# HTMX, Rust, Axum
+A basic htmx playground for learning htmx, rust and axum all at once like a G.
