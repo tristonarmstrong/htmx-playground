@@ -54,5 +54,7 @@ pub fn init_router() -> Router {
         .nest("/notes", init_notes_routes())
         .nest("/", init_utily_routes());
 
-    Router::new().nest("/", routes)
+    Router::new()
+        .nest("/", routes)
+        .layer(tower_livereload::LiveReloadLayer::new())
 }
