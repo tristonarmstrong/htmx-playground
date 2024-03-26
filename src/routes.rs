@@ -21,8 +21,10 @@ pub async fn notes() -> impl IntoResponse {
 }
 
 pub async fn tuts() -> impl IntoResponse {
+    let tuts_list = Vec::new();
+
     templates::Tuts {
-        tuts_list: "some tuts",
+        tuts_list: tuts_list,
     }
 }
 

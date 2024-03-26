@@ -11,7 +11,7 @@ pub struct Notes;
 #[derive(Template)]
 #[template(path = "tuts.html")]
 pub struct Tuts<'a> {
-    pub tuts_list: &'a str,
+    pub tuts_list: Vec<&'a str>,
 }
 
 #[derive(Template)]
