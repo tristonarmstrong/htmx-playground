@@ -15,3 +15,14 @@ td {
     border: 1px solid black;
     padding: 0.25rem;
 }
+
+/* prism overrides*/
+pre[class*="language-"] {
+    background: unset !important;
+    padding: unset !important;
+}
+
+pre[class*="language-"][data-language]::before {
+    color: #888 !important;
+    background-color: #161f27 !important;
+}
