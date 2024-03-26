@@ -10,7 +10,9 @@ pub struct Notes;
 
 #[derive(Template)]
 #[template(path = "tuts.html")]
-pub struct Tuts;
+pub struct Tuts<'a> {
+    pub tuts_list: &'a str,
+}
 
 #[derive(Template)]
 #[template(path = "tut.html", ext = "html", escape = "none")]

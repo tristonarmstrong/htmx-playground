@@ -21,7 +21,9 @@ pub async fn notes() -> impl IntoResponse {
 }
 
 pub async fn tuts() -> impl IntoResponse {
-    templates::Tuts
+    templates::Tuts {
+        tuts_list: "some tuts",
+    }
 }
 
 pub async fn tuts_builder(path: String) -> Result<impl IntoResponse, ApiError> {
@@ -29,7 +31,7 @@ pub async fn tuts_builder(path: String) -> Result<impl IntoResponse, ApiError> {
     let file_contents_to_html =
         markdown_to_html(file_contents.as_str(), &comrak::Options::default());
     let file_template = Tut {
-        title: "test title",
+        title: "Note",
         content: file_contents_to_html.as_str(),
     };
     let response = Response::builder()
