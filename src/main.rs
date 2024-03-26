@@ -1,3 +1,6 @@
+use shuttle_axum::AxumService;
+use shuttle_runtime::{CustomError, Error};
+
 mod errors;
 mod models;
 mod router;

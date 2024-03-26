@@ -11,3 +11,10 @@ pub struct Notes;
 #[derive(Template)]
 #[template(path = "tuts.html")]
 pub struct Tuts;
+
+#[derive(Template)]
+#[template(path = "tut.html", ext = "html", escape = "none")]
+pub struct Tut<'a> {
+    pub title: &'a str,
+    pub content: &'a str,
+}
