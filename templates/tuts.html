@@ -8,5 +8,9 @@ content %}
 
 <h1>Notes</h1>
 <p>Here all my Micro Tuts</p>
-{{tuts_list}}
+<ul>
+    {% for tut in tuts_list %}
+    <li><a href="tuts/{{tut}}">{{tut}}</a></li>
+    {% endfor %}
+</ul>
 {% endblock content%}

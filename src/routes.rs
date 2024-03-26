@@ -1,5 +1,3 @@
-use std::{fs::File, io::Read};
-
 use askama::Template;
 use axum::{
     http::StatusCode,
@@ -20,12 +18,8 @@ pub async fn notes() -> impl IntoResponse {
     templates::Notes
 }
 
-pub async fn tuts() -> impl IntoResponse {
-    let tuts_list = Vec::new();
-
-    templates::Tuts {
-        tuts_list: tuts_list,
-    }
+pub async fn tuts(paths: Vec<String>) -> impl IntoResponse {
+    templates::Tuts { tuts_list: paths }
 }
 
 pub async fn tuts_builder(path: String) -> Result<impl IntoResponse, ApiError> {
