@@ -8,9 +8,17 @@ content %}
 
 <h1>Micro Tuts</h1>
 <p>Here all my Micro Tuts</p>
-<ul>
+<div class="list-none gap-1 flex flex-col">
     {% for tut in tuts_list %}
-    <li><a href="tuts/{{tut}}">{{tut}}</a></li>
+    <a href="tuts/{{tut}}" class="hover:no-underline" >
+      <div class="no-underline border-0 py-4 px-3 flex flex-row gap-3 border-b border-white border-dashed border-opacity-20 hover:bg-white hover:bg-opacity-10  hover:rounded-xl">
+        <img src="https://thispersondoesnotexist.com" width="100" height="100"/>
+        <div>
+          <h2 class="">{{tut}}</h3>
+          <p class="text-white text-opacity-60">Some short description of the tut</p>
+        </div>
+      </div>
+    </a>
     {% endfor %}
-</ul>
+</div>
 {% endblock content%}
