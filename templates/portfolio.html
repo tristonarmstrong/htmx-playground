@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Portfolio{% endblock %}
 
-{% macro skill(link, label)%}
+{% macro skill(link, label) %}
 <a href="{{link}}" target="_blank" style="text-decoration: none !important">
   {{label}}
 </a>
 {% endmacro %}
 
-{% macro job(title, date, description)%}
-<div>
-  <h3>{{title}} 
+{% macro job(title, date, description) %}
+<div class="rounded-xl my-1 px-4 py-2 bg-white bg-opacity-5">
+  <h3 class="my-1 text-white text-opacity-40">{{title}} 
     <small style="font-weight: normal"><i> / {{date}}</i></small>
   </h3>
-  <p>{{description}}</p>
+  <p class="my-1">{{description}}</p>
 </div>
 {% endmacro %}
+
+{% macro project(link, label) %}
+<div class="flex w-full items-baseline gap-1 my-1">
+  <a href="{{link}}" target="_blank">{{label}}</a>
+  <div class="flex-1 border border-dashed h-0 border-white border-opacity-20"></div>
+  <a href="{{link}}" target="_blank">&#10238;</a>
+</div>
+{% endmacro %}
+
 
 {% block content %}
 <nav>
@@ -35,7 +44,7 @@
   to solving problems using code.
 </p>
 
-<h2>🤹 Skills</h2>
+<h2 class="text-white text-opacity-80">🤹 Skills</h2>
 <p>
   {% call skill("https://www.typescriptlang.org/docs/handbook/intro.html", "Typescript") %}
   | {% call skill("https://docs.python.org/3/", "Python") %}
@@ -43,37 +52,24 @@
   | {% call skill("https://developer.mozilla.org/en-US/docs/Web/javascript#reference","Javascript") %}
 </p>
 
-<h2>💼 Jobs</h2>
+<h2 class="text-white text-opacity-80">💼 Jobs</h2>
 {% call job("Ventra Health","May '23 - Present","Maintaining and iterating on an internal web application") %}
 {% call job("Randstad Technologies", "May '22 - May '23", "Built Web Applications for external clients") %}
 {% call job("Damiano Global Corporation", "July '20 - Nov. '21", "Built Web Applications for external clients") %}
 {% call job("Makers Ladder LLC", "Dec. '19 - Apr. '22", "Did some thangs") %}
 
-<h2>🚧 Projects</h2>
-<p>
-  <a href="https://github.com/tristonarmstrong/SolarBatteryMonitorApi" target="_blank">Solar Battery Monitor API</a>
-  |
-  <a href="https://github.com/tristonarmstrong/armstrong-editor" target="_blank">Armstrong Editor</a>
-  |
-  <a href="https://github.com/tristonarmstrong/web-window-manager" target="_blank">Web Window Manager</a>
-  |
-  <a href="https://github.com/tristonarmstrong/component-test-helper" target="_blank">Component Test Helper</a>
-  |
-  <a href="https://github.com/tristonarmstrong/hive-dapp" target="_blank">Hive DAPP</a>
-  |
-  <a href="https://github.com/tristonarmstrong/KivyTwistedInputCapture" target="_blank">Kivy Twisted Input Capture</a>
-  |
-  <a href="https://github.com/tristonarmstrong/PlantMonitorNodeMCU" target="_blank">Plant Monitor Node MCU</a>
-  |
-  <a href="https://github.com/tristonarmstrong/oppo_bdp_103_CLI" target="_blank">Oppo BDP 103 CLI</a>
-  |
-  <a href="https://github.com/tristonarmstrong/sony_bravia_pro_display_mock_server" target="_blank">Sony Bravia Pro
-    Server</a>
-  |
-  <a href="https://github.com/tristonarmstrong/chat.io" target="_blank">Chat IO</a>
-  |
-  <a href="https://github.com/tristonarmstrong/zipapp" target="_blank">Zip Code Distance App</a>
-</p>
+<h2 class="text-white text-opacity-80">🚧 Projects</h2>
+{% call project("https://github.com/tristonarmstrong/SolarBatteryMonitorApi", "Solar Battery Monitor API")%}
+{% call project("https://github.com/tristonarmstrong/armstrong-editor", "Armstrong Editor")%}
+{% call project("https://github.com/tristonarmstrong/web-window-manager", "Web Window Manager")%}
+{% call project("https://github.com/tristonarmstrong/component-test-helper", "Component Test Helper")%}
+{% call project("https://github.com/tristonarmstrong/hive-dapp", "Hive DAPP")%}
+{% call project("https://github.com/tristonarmstrong/KivyTwistedInputCapture", "Kivy Twisted Input Capture")%}
+{% call project("https://github.com/tristonarmstrong/PlantMonitorNodeMCU", "Plant Monitor Node MCU")%}
+{% call project("https://github.com/tristonarmstrong/oppo_bdp_103_CLI", "Oppo BDP 103 CLI")%}
+{% call project("https://github.com/tristonarmstrong/sony_bravia_pro_display_mock_server", "Sony Bravia Pro Server")%}
+{% call project("https://github.com/tristonarmstrong/chat.io", "Chat IO")%}
+{% call project("https://github.com/tristonarmstrong/zipapp", "Zip Code Distance App")%}
 
 <footer>
   <a href="https://github.com/tristonarmstrong">Github</a>

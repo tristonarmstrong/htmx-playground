@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <script src="https://cdn.tailwindcss.com"></script>
         <script
             src="https://unpkg.com/htmx.org@1.9.6"
             integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
@@ -11,6 +12,7 @@
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+            defer
         />
         <link
             rel="stylesheet"
@@ -33,8 +35,15 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-
         <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
+        <script>
+            tailwind.config = {
+                corePlugins: {
+                    preflight: false,
+                },
+            };
+        </script>
+
         {% block head %}{% endblock %}
     </head>
     <body>
