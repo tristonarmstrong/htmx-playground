@@ -7,7 +7,9 @@ use comrak::markdown_to_html;
 
 use crate::{
     errors::ApiError,
+    structs::FileDisplay,
     templates::{self, Tut},
+    utils,
 };
 
 pub async fn portfolio() -> impl IntoResponse {
@@ -19,7 +21,24 @@ pub async fn notes() -> impl IntoResponse {
 }
 
 pub async fn tuts(paths: Vec<String>) -> impl IntoResponse {
-    templates::Tuts { tuts_list: paths }
+    let mut new_paths: Vec<FileDisplay> = vec![];
+    for path in paths {
+        let new_struct = FileDisplay {
+            file_path: path.clone().to_string(),
+            title: utils::upper_all_words_first_letters(utils::rm_delimeter(
+                utils::rm_path_ext(path),
+                "_".to_string(),
+                " ".to_string(),
+            ))
+            .unwrap(),
+        };
+
+        new_paths.push(new_struct);
+    }
+
+    templates::Tuts {
+        tuts_list: new_paths,
+    }
 }
 
 pub async fn tuts_builder(path: String, tut_title: String) -> Result<impl IntoResponse, ApiError> {

@@ -1,5 +1,7 @@
 use askama::Template;
 
+use crate::structs::FileDisplay;
+
 #[derive(Template)]
 #[template(path = "portfolio.html")]
 pub struct Portfolio;
@@ -11,7 +13,7 @@ pub struct Notes;
 #[derive(Template)]
 #[template(path = "tuts.html")]
 pub struct Tuts {
-    pub tuts_list: Vec<String>,
+    pub tuts_list: Vec<FileDisplay>,
 }
 
 #[derive(Template)]

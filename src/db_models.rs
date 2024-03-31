@@ -1,2 +1,2 @@
 // use serde::{Deserialize, Serialize};
-// put models here
+// put DB models here

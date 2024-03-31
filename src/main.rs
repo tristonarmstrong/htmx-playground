@@ -1,7 +1,11 @@
+use shuttle_axum::AxumService;
+use shuttle_runtime;
+
+mod db_models;
 mod errors;
-mod models;
 mod router;
 mod routes;
+mod structs;
 mod templates;
 mod utils;
 
