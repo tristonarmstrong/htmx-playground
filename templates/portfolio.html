@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Portfolio{% endblock %}
 
+{% macro link(link, value) %}
+  <a href="{{link}}" target="_blank" class="text-indigo-300">{{value}}</a>
+{% endmacro %}
+
 {% macro skill(link, label) %}
-<a href="{{link}}" target="_blank" style="text-decoration: none !important">
-  {{label}}
-</a>
+  {% call link(link, label) %}
 {% endmacro %}
 
 {% macro job(title, date, description) %}
@@ -18,9 +20,9 @@
 
 {% macro project(link, label) %}
 <div class="flex w-full items-baseline gap-1 my-1">
-  <a href="{{link}}" target="_blank">{{label}}</a>
+  {% call link(link, label) %}
   <div class="flex-1 border border-dashed h-0 border-white border-opacity-20"></div>
-  <a href="{{link}}" target="_blank">&#10238;</a>
+  {% call link(link, "👉") %}
 </div>
 {% endmacro %}
 
@@ -28,16 +30,15 @@
 {% block content %}
 <nav>
   <small>
-    <a href="/tuts">Micro Tuts</a> / <a href="/notes">Notes</a> /
-    <a href="https://tristonarmstrong.com/social" target="_blank">Social</a>
+   {% call link("/tuts", "Micro Tuts") %} / {% call link("/notes", "Notes") %} / {% call link("https://tristonarmstrong.com/social", "Social") %}
   </small>
 </nav>
 <hr />
 
-<h1>Triston Armstrong 🫰</h1>
+<h1 class="text-indigo-500">Triston Armstrong 🫰</h1>
 <p>
   Full Stack Software Developer
-  <a target="_blank" href="https://ventrahealth.com">@VentraHealth</a>
+  {% call link("https://ventrahealth.com", "@VentraHealth") %}
 </p>
 <p>
   I am a self taught Full Stack Software Developer with an unhealthy addiction
@@ -72,15 +73,15 @@
 {% call project("https://github.com/tristonarmstrong/zipapp", "Zip Code Distance App")%}
 
 <footer>
-  <a href="https://github.com/tristonarmstrong">Github</a>
+  {% call link("https://github.com/tristonarmstrong", "Github") %}
   |
-  <a href="https://www.linkedin.com/in/triston95strong/">LinkedIn</a>
+  {% call link("https://www.linkedin.com/in/triston95strong/", "LinkedIn") %}
   |
-  <a href="https://gitlab.com/Tarmstrong95">GitLab</a>
+  {% call link("https://gitlab.com/Tarmstrong95", "GitLab") %}
   |
-  <a href="https://twitter.com/triston_armstr">Twitter</a>
+  {% call link("https://twitter.com/triston_armstr", "Twitter") %}
   |
-  <a href="https://fosstodon.org/@TristonArmstrong">Fosstodon</a>
+  {% call link("https://fosstodon.org/@TristonArmstrong", "Fosstodon") %}
   <p><small>©2023-2024 Triston Armstrong. All rights reserved.</small></p>
 </footer>
 {% endblock %}
