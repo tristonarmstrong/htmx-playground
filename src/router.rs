@@ -1,7 +1,10 @@
 use axum::{routing::get, Router};
 use std::{env, fs};
 
-use crate::routes;
+use crate::{routes, utils};
+
+const FILE_NAME_DELIMETER: &str = "_";
+const FILE_NAME_DELIMETER_REPLACEMENT: &str = " ";
 
 #[derive(Clone)]
 pub struct AppState {}
@@ -11,12 +14,22 @@ pub fn init_notes_routes() -> Router {
     Router::new().route("/", get(routes::notes))
 }
 
-pub fn update_route(router: Router, file_name_str: String, file_path_str: String) -> Router {
+pub fn update_tuts_route(router: Router, file_name_str: String, file_path_str: String) -> Router {
     let route = format!("/{}", file_name_str);
-    println!("{}", route);
+    let tut_title = utils::rm_path_ext(utils::rm_delimeter(
+        file_name_str,
+        FILE_NAME_DELIMETER.to_string(),
+        FILE_NAME_DELIMETER_REPLACEMENT.to_string(),
+    ));
+
     router.route(
         route.clone().as_str(),
-        get(move || routes::tuts_builder(file_path_str)),
+        get(move || {
+            routes::tuts_builder(
+                file_path_str,
+                utils::upper_all_words_first_letters(tut_title).unwrap(),
+            )
+        }),
     )
 }
 
@@ -34,8 +47,9 @@ pub fn init_tuts_routes() -> Router {
         let file_name = entry.file_name();
         let file_name_str = file_name.to_str().unwrap().to_string();
         file_dir_vec.push(file_name_str.clone());
-        router = update_route(router, file_name_str, file_path);
+        router = update_tuts_route(router, file_name_str, file_path);
     }
+
     router = router.route("/", get(move || routes::tuts(file_dir_vec)));
 
     router

@@ -22,12 +22,12 @@ pub async fn tuts(paths: Vec<String>) -> impl IntoResponse {
     templates::Tuts { tuts_list: paths }
 }
 
-pub async fn tuts_builder(path: String) -> Result<impl IntoResponse, ApiError> {
+pub async fn tuts_builder(path: String, tut_title: String) -> Result<impl IntoResponse, ApiError> {
     let file_contents = std::fs::read_to_string(path).unwrap();
     let file_contents_to_html =
         markdown_to_html(file_contents.as_str(), &comrak::Options::default());
     let file_template = Tut {
-        title: "Note",
+        title: &tut_title,
         content: file_contents_to_html.as_str(),
     };
     let response = Response::builder()
